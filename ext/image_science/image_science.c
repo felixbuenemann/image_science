@@ -169,6 +169,17 @@ static VALUE resize(VALUE self, VALUE _w, VALUE _h) {
   return (Qnil);
 }
 
+// optimize jpeg if supported
+#define JPEG_QUALITY JPEG_QUALITYGOOD
+#if defined(JPEG_BASELINE)
+#define JPEG_FLAGS JPEG_BASELINE|JPEG_OPTIMIZE|JPEG_SUBSAMPLING_444|JPEG_QUALITY
+#elif defined(JPEG_OPTIMIZE)
+#define JPEG_FLAGS JPEG_OPTIMIZE|JPEG_SUBSAMPLING_444|JPEG_QUALITY
+#elif defined(JPEG_SUBSAMPLING_444)
+#define JPEG_FLAGS JPEG_SUBSAMPLING_444|JPEG_QUALITY
+#else
+#define JPEG_FLAGS JPEG_QUALITY
+#endif
 
 static VALUE save(VALUE self, VALUE _output) {
   char * output = StringValuePtr(_output);
@@ -179,7 +190,7 @@ static VALUE save(VALUE self, VALUE _output) {
   if (fif == FIF_UNKNOWN) fif = FIX2INT(rb_iv_get(self, "@file_type"));
   if ((fif != FIF_UNKNOWN) && FreeImage_FIFSupportsWriting(fif)) {
     GET_BITMAP(bitmap);
-    flags = fif == FIF_JPEG ? JPEG_QUALITYGOOD|JPEG_SUBSAMPLING_444|JPEG_BASELINE|JPEG_OPTIMIZE : 0;
+    flags = fif == FIF_JPEG ? JPEG_FLAGS : 0;
     BOOL result = 0, unload = 0;
 
     if (fif == FIF_PNG) FreeImage_DestroyICCProfile(bitmap);
