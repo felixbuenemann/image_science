@@ -170,7 +170,7 @@ static VALUE resize(VALUE self, VALUE _w, VALUE _h) {
 }
 
 // optimize jpeg if supported
-#define JPEG_QUALITY JPEG_QUALITYGOOD
+#define JPEG_QUALITY 92
 #if defined(JPEG_BASELINE)
 #define JPEG_FLAGS JPEG_BASELINE|JPEG_OPTIMIZE|JPEG_SUBSAMPLING_444|JPEG_QUALITY
 #elif defined(JPEG_OPTIMIZE)
