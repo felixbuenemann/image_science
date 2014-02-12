@@ -4,3 +4,6 @@ pkg/*
 mkmf.log
 Makefile
 *.so
+*.o
+Gemfile.lock
+/lib/image_science/extension.*

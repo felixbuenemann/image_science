@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.authors = ['Ryan Davis', 'Craig Buchek']
   s.email = ['craig.buchek@asolutions.com']
-  s.homepage = "http://github.com/asynchrony/#{s.name}"
+  s.homepage = "http://github.com/felixbuenemann/#{s.name}"
   s.summary = %q{Replacement for RMagick; uses FreeImage instead of ImageMagick}
   s.description = %q{ImageScience is a clean and happy Ruby library that generates
 thumbnails -- and kicks the living crap out of RMagick. Oh, and it
@@ -19,6 +19,7 @@ For more information (on the original variant), see http://seattlerb.rubyforge.o
 }
 
   s.rubyforge_project = "image_science"
+  s.licenses = "MIT"
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
