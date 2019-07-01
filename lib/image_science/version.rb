@@ -1,3 +1,3 @@
 class ImageScience
-  VERSION = '1.3.2.3.norubyinline'
+  VERSION = '1.3.2.4.norubyinline'
 end
